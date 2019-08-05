@@ -23,7 +23,8 @@ export default class Game extends Component {
   }
 
   componentDidMount() {
-    this.handleInitDeck();
+    const cards = this.handleInitDeck();
+    this.setState({ cards });
   }
 
   handleNewGame = () => {
@@ -37,6 +38,22 @@ export default class Game extends Component {
       disabled: false,
     });
   };
+
+  handleInitDeck = () => {
+    let id = 0;
+    const cards = CardsData.reduce((acc, item) => {
+      acc.push({
+        ...item,
+        id: id++,
+      });
+      acc.push({
+        ...item,
+        id: id++,
+      });
+      return acc;
+    }, []);
+    return shuffle(cards);
+  }
 
   handlePress = (id) => {
     const { flipped, solved, score } = this.state;
@@ -64,8 +81,6 @@ export default class Game extends Component {
       }
     }
   };
-
-  handleInitDeck = () => shuffle(CardsData);
 
   sameCardClicked = (id) => {
     const { flipped } = this.state;

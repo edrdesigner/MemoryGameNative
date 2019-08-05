@@ -29,7 +29,7 @@ Abaixo segue o que foi utilizado na criação:
 
 ## Começando
 
-Para utilizar o projeto siga os passoa abaixo:
+Para utilizar o projeto siga os passos abaixo:
 
 ### Estrutura de Arquivos
 

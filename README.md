@@ -9,7 +9,6 @@ Abaixo segue o que foi utilizado na criação:
 - [React Native](http://facebook.github.io/react-native/) - O React Native é um framework que permite o desenvolvimento de aplicações mobile usando Javascript e React;
 - [React Navigation](https://reactnavigation.org/) - O React Navigation surgiu da necessidade comunidade do React Native de uma navegação de forma fácil de se usar, e escrita toda em Javascript;
 - [React Native Gesture Handler](https://kmagiera.github.io/react-native-gesture-handler/) - API declarativa que permite a manipulação de toques e gestos no React Native;
-- [Axios](https://github.com/axios/axios) - O Axios é um cliente HTTP baseado em Promises para Browser e NodeJS;
 - [Prop Types](https://github.com/facebook/prop-types) - Verificação de tipo em tempo de execução para propriedades (props) React e objetos semelhantes;
 - [Reactotron](https://github.com/infinitered/reactotron) - O Reactotron é um app Desktop para inspecionar projetos em React ou React Native. Está disponível para macOS, Linux e Windows;
   - [reactotron-react-native](https://github.com/infinitered/reactotron/blob/master/docs/quick-start-react-native.md) - Plugin para configurar o Reactotron para se conectar ao projeto React Native;
@@ -36,10 +35,13 @@ Para utilizar o projeto siga os passos abaixo:
 A estrutura de arquivos está da seguinte maneira:
 
 ```bash
-rocketseat-basic
+memoryGameNative
 ├── src/
 │   ├── config/
 │   │   └── ReactotronConfig.js
+│   ├── components/
+│   │   └── Board/
+│   │       └── index.js
 │   ├── pages/
 │   │   └── Main/
 │   │       └── index.js
@@ -57,7 +59,6 @@ rocketseat-basic
 ├── package.json
 └── README.md
 ```
-
 
 ### Instalação
 

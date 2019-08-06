@@ -11,7 +11,7 @@ export const Container = styled.View`
 `;
 
 export const FlipCard = styled.TouchableOpacity`
-
+  flex-grow: 1;
 `;
 
 export const CardImage = styled.Image`

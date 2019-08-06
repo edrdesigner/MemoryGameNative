@@ -20,14 +20,15 @@ export default Card = (props) => {
   } = props;
 
   return (
-    <Container>
       <FlipCard key={id} onPress={() => (disabled ? null : handlePress(id))}>
-        {flipped || solved
-          ? (<CardImage source={uri} style={{ width, height }} />)
-          : (<CardImage source={require('~/assets/images/back.png')} style={{ width, height }} />)
-        }
+        <Container>
+          {flipped || solved
+            ? (<CardImage source={uri} style={{ width, height }} />)
+            : (<CardImage source={require('~/assets/images/back.png')} style={{ width, height }} />)
+          }
+        </Container>
       </FlipCard>
-    </Container>
+
   );
 };
 

@@ -59,9 +59,8 @@ export default class Main extends Component {
       <Container>
         <StatusBar barStyle="light-content" />
         <LogoText>MemoGame</LogoText>
-        <InstructionText>Bem vindo</InstructionText>
         <InstructionText>
-          Para continuar precisamos que voce informe um apelido:
+          Para continuar informe um apelido:
         </InstructionText>
         {error && <ErrorText>Ops occoreu um erro!</ErrorText>}
         <FormContainer>

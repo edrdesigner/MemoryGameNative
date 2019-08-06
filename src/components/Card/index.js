@@ -28,7 +28,6 @@ export default Card = (props) => {
           }
         </Container>
       </FlipCard>
-
   );
 };
 

@@ -5,13 +5,21 @@ import {
   TouchableOpacity, StatusBar, AsyncStorage,
 } from 'react-native';
 import {
-  Container, Title, LeftView, Icon,
+  Container, Title, LeftView, Icon, ScoreView, ScoreText,
 } from './styles';
 
-
+/**
+ * @author Eduardo Reichert <edrdesigner@gmail.com>
+ * @since 0.1.0 2019-08-04
+ **/
 class Header extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
+    wins: PropTypes.number,
+    losses: PropTypes.number,
+    score: PropTypes.number,
+    wrongGuesses: PropTypes.number,
+    newGame: PropTypes.func.isRequired,
     navigation: PropTypes.shape({
       navigate: PropTypes.func,
     }).isRequired,
@@ -24,12 +32,23 @@ class Header extends Component {
   };
 
   render() {
-    const { title } = this.props;
+    const { title, wins, losses, score, wrongGuesses, newGame } = this.props;
     return (
       <Container>
         <StatusBar barStyle="light-content" />
-        <LeftView />
         <Title>{title}</Title>
+        <ScoreView>
+          <ScoreText>{`Ganhou: ${wins}`}</ScoreText>
+        </ScoreView>
+        <ScoreView>
+          <ScoreText>{`Perdeu: ${losses}`}</ScoreText>
+        </ScoreView>
+        <ScoreView>
+          <ScoreText>{`Acertou: ${score}/5`}</ScoreText>
+        </ScoreView>
+        <ScoreView>
+          <ScoreText>{`Errou: ${wrongGuesses}/5`}</ScoreText>
+        </ScoreView>
         <TouchableOpacity onPress={this.handleSignOut}>
           <Icon name="exchange" size={16} />
         </TouchableOpacity>

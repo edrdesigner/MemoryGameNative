@@ -12,6 +12,10 @@ import {
   ButtonText,
 } from './styles';
 
+/**
+ * @author Eduardo Reichert <edrdesigner@gmail.com>
+ * @since 0.1.0 2019-08-04
+ **/
 export default class Main extends Component {
   static propTypes = {
     navigation: PropTypes.shape({

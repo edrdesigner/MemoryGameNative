@@ -1,10 +1,13 @@
 import React from 'react';
-import { Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { Image } from 'react-native';
+import { Container, FlipCard, CardImage } from './styles';
 
-import { FlipCard } from './styles';
-
-export const Card = (props) => {
+/**
+ * @author Eduardo Reichert <edrdesigner@gmail.com>
+ * @since 0.1.0 2019-08-04
+ **/
+export default Card = (props) => {
   const {
     id,
     flipped,
@@ -17,12 +20,14 @@ export const Card = (props) => {
   } = props;
 
   return (
-    <FlipCard key={id} onPress={() => (disabled ? null : handlePress(id))}>
-      {flipped || solved
-        ? (<Image source={uri} style={{ width, height }} />)
-        : (<Image source={require('~/assets/images/back.png')} style={{ width, height }} />)
-      }
-    </FlipCard>
+    <Container>
+      <FlipCard key={id} onPress={() => (disabled ? null : handlePress(id))}>
+        {flipped || solved
+          ? (<CardImage source={uri} style={{ width, height }} />)
+          : (<CardImage source={require('~/assets/images/back.png')} style={{ width, height }} />)
+        }
+      </FlipCard>
+    </Container>
   );
 };
 
@@ -31,7 +36,7 @@ Card.propTypes = {
   handlePress: PropTypes.func.isRequired,
   flipped: PropTypes.bool.isRequired,
   solved: PropTypes.bool.isRequired,
-  uri: PropTypes.string.isRequired,
+  uri: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   disabled: PropTypes.bool.isRequired,

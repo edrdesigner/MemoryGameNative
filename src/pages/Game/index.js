@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import { Dimensions } from 'react-native';
 import shuffle from '~/helpers/shuffle';
 import Header from '~/components/Header';
 import Board from '~/components/Board';
 import CardsData from '~/data/cards';
-
 import { Container } from './styles';
 
+const TIMEOUT_NEW_GAME = 1000;
+const TIMEOUT_RESET = 1000;
+const DEFAULT_DIMENSION = 450;
+
+/**
+ * @author Eduardo Reichert <edrdesigner@gmail.com>
+ * @since 0.1.0 2019-08-04
+ **/
 export default class Game extends Component {
   constructor() {
     super();
-
     this.state = {
       cards: [],
       flipped: [],
@@ -24,7 +31,19 @@ export default class Game extends Component {
 
   componentDidMount() {
     const cards = this.handleInitDeck();
-    this.setState({ cards });
+    const dimension = this.handleDimensions();
+    this.setState({ cards, dimension });
+  }
+
+  handleDimensions = () => {
+    const screenWidth = Math.round(Dimensions.get('window').width);
+    const screenHeight = Math.round(Dimensions.get('window').height);
+
+    if (screenWidth && screenHeight) {
+      return Math.min(screenWidth, screenHeight)
+    }
+
+    return DEFAULT_DIMENSION;
   }
 
   handleNewGame = () => {
@@ -52,6 +71,7 @@ export default class Game extends Component {
       });
       return acc;
     }, []);
+
     return shuffle(cards);
   }
 
@@ -62,7 +82,7 @@ export default class Game extends Component {
       this.setState({ flipped: [id], disabled: false });
     } else {
       if (this.sameCardClicked(id)) {
-        this.setState({ disabled: true });
+        this.setState({ disabled: false });
         return;
       }
       this.setState({ flipped: [flipped[0], id] });
@@ -97,7 +117,7 @@ export default class Game extends Component {
   noMatch = () => {
     const { wrongGuesses } = this.state;
     this.updateGuesses(wrongGuesses, this.checkGuesses);
-    setTimeout(this.resetCards, 1000);
+    setTimeout(this.resetCards, TIMEOUT_RESET);
   };
 
   resetCards = () => {
@@ -128,7 +148,7 @@ export default class Game extends Component {
     const { wins, cards } = this.state;
     if (score > cards.length / 2 - 1) {
       this.setState({ wins: wins + 1 }, () => {
-        setTimeout(this.handleNewGame, 1000);
+        setTimeout(this.handleNewGame, TIMEOUT_NEW_GAME);
       });
     }
   };
@@ -138,7 +158,7 @@ export default class Game extends Component {
     const newGuesses = wrongGuesses || stateWrongGuesses;
     if (newGuesses > cards.length / 2 - 1) {
       this.setState({ losses: losses + 1 }, () => {
-        setTimeout(this.handleNewGame, 1000);
+        setTimeout(this.handleNewGame, TIMEOUT_NEW_GAME);
       });
     }
   };
@@ -148,6 +168,7 @@ export default class Game extends Component {
       cards,
       flipped,
       disabled,
+      dimension,
       solved,
       wins,
       losses,
@@ -157,7 +178,7 @@ export default class Game extends Component {
     return (
       <Container>
         <Header
-          title="Memory Game"
+          title="Jogo"
           wins={wins}
           losses={losses}
           score={score}
@@ -167,9 +188,10 @@ export default class Game extends Component {
         <Board
           cards={cards}
           flipped={flipped}
+          dimension={dimension}
+          solved={solved}
           handlePress={this.handlePress}
           disabled={disabled}
-          solved={solved}
         />
       </Container>
     );

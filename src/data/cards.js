@@ -1,4 +1,4 @@
-export const CARDS = [
+export default CARDS_DATA = [
   {
     title: 'javascript',
     uri: require('~/assets/images/javascript.png'),

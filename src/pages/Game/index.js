@@ -40,7 +40,7 @@ export default class Game extends Component {
     const screenHeight = Math.round(Dimensions.get('window').height);
 
     if (screenWidth && screenHeight) {
-      return Math.min(screenWidth, screenHeight)
+      return Math.min(screenWidth, screenHeight);
     }
 
     return DEFAULT_DIMENSION;
